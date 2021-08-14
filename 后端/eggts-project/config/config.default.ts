@@ -17,6 +17,16 @@ export default (appInfo: EggAppInfo) => {
     password: 'wangzj199507',
     database: 'database_development',
   };
+  config.redis = {
+    client: {
+      host: '127.0.0.1',
+      port: 6379,
+      password: '',
+      db: 0,
+    },
+    agent: true
+  };
+
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
