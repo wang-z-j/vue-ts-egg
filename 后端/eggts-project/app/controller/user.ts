@@ -2,7 +2,7 @@ import { Controller } from 'egg';
 import NormalUserRule from '../validate/normalUserRule'
 import EmailUserRule from '../validate/emailUserRule'
 import PhoneUserRule from '../validate/phoneUserRule'
-const enum RegisterTypeEnum{
+const enum RegisterTypeEnum {
   Normal = "normal",
   Email = "email",
   Phone = "phone",
@@ -31,13 +31,14 @@ export default class UserController extends Controller {
       case RegisterTypeEnum.Normal:
         console.log('normal登录');
         ctx.validate(NormalUserRule, data)
+        ctx.helper.verifyImageCode(data.captcha)
         break;
       case RegisterTypeEnum.Email:
         console.log('Email登录');
         ctx.validate(EmailUserRule, data)
+        ctx.helper.verifyEmailCode(data.captcha)
         break;
       case RegisterTypeEnum.Phone:
-        console.log('Phone登录');
         ctx.validate(PhoneUserRule, data)
         break;
       default:
